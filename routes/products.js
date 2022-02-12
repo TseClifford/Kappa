@@ -6,6 +6,10 @@ module.exports = (db) => {
     res.render("products_index");
   });
 
+  router.get("/new", (req, res) => {
+    res.render("products_new");
+  });
+
   router.get("/:id", (req, res) => {
     res.render("products_show");
   });
