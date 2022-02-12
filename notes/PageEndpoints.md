@@ -1,8 +1,12 @@
 ## **PAGE ENDPOINTS**
 
-**Homepage**
+**Homepage (redirects to /listings)**
 
 /
+
+**Listings**
+
+/listings
 
 **Individual product page**
 
