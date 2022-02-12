@@ -56,8 +56,13 @@ app.get("/", (req, res) => {
 });
 
 // Gets a 404 error page
-app.get("*", (req, res) => {
+app.get("/404", (req, res) => {
   res.render("404");
+});
+
+// Redirects to 404 page
+app.get("*", (req, res) => {
+  res.redirect("/404");
 });
 
 app.listen(PORT, () => {
