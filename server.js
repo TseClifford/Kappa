@@ -50,8 +50,14 @@ app.use("/products", productsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+// Redirects to the products page
 app.get("/", (req, res) => {
   res.redirect("/products");
+});
+
+// Gets a 404 error page
+app.get("*", (req, res) => {
+  res.render("404");
 });
 
 app.listen(PORT, () => {
