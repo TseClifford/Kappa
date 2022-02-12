@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS listings CASCADE;
+
+CREATE TABLE listings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  img_url VARCHAR(255) NOT NULL,
+  price INTEGER NOT NULL,
+  description TEXT,
+  isFeatured BOOLEAN DEFAULT 'false',
+  isSold BOOLEAN DEFAULT 'false'
+);
