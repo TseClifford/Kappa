@@ -44,18 +44,23 @@ const productsRoutes = require("./routes/products");
 app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingsRoutes(db));
 app.use("/products", productsRoutes(db));
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 
 // Redirects to the products page
 app.get("/", (req, res) => {
   res.redirect("/products");
 });
 
-// Gets a 404 error page
+// Login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// Registration page
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+// 404 error page
 app.get("/404", (req, res) => {
   res.render("404");
 });
