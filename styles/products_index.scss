@@ -1,15 +1,18 @@
 section.featured {
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  column-gap: 50px;
+  border: 2px solid black;
+  flex-wrap: wrap;
 
   article.featured-listing {
-    display:flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
-    word-wrap: break-word;
     border: 2px solid black;
+    margin-bottom: 20px;
 
     img {
       max-height: 150px;
