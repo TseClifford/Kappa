@@ -1,3 +1,4 @@
+// Featured Section
 section.featured {
   padding: 20px 20px 0px 20px;
   width: 100%;
@@ -16,7 +17,6 @@ section.featured {
     margin-bottom: 20px;
 
     img {
-      max-height: 150px;
       max-width: 150px;
     }
 
@@ -31,10 +31,11 @@ section.featured {
   }
 }
 
+// Favourite and sort buttons
 div.sorting-buttons {
   display:flex;
   justify-content: right;
-  margin-bottom: 5px;
+  margin: 5px 0em;
 
   button {
     height: 2em;
@@ -44,15 +45,40 @@ div.sorting-buttons {
   }
 }
 
+// All listings
 article.listing{
   padding: 20px;
   border: 2px solid black;
   height: 300px;
   width: vw;
+  display: flex;
+  justify-content: space-between;
 
   img.listing-img {
     max-height: 100%;
     max-width: 100%;
 
+  }
+  div.listing-details {
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+    padding-left: 20px;
+
+    a {
+      font-weight: bold;
+    }
+
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: right;
+
+      p {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
+      }
+    }
   }
 }
