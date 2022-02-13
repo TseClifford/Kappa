@@ -11,7 +11,7 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    res.render("products_show");
+    res.render("products_unique");
   });
 
   return router;

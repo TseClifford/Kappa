@@ -6,7 +6,9 @@ html {
   box-sizing: border-box;
   margin: 0;
   background-color: #dde5ed;
+  min-width: 350px;
 }
 
 @import './header.scss';
 @import './products_index.scss';
+@import './products_unique.scss';
