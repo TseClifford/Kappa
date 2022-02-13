@@ -1,0 +1,54 @@
+section.featured {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  article.featured-listing {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    word-wrap: break-word;
+    border: 2px solid black;
+
+    img {
+      max-height: 150px;
+      max-width: 150px;
+    }
+
+    a {
+      padding: 0em 0.5em;
+      font-weight: bold;
+    }
+
+    a.price {
+      color: #41AC6C;
+    }
+  }
+}
+
+div.sorting-buttons {
+  display:flex;
+  justify-content: right;
+  margin-bottom: 5px;
+
+  button {
+    height: 2em;
+    margin-left: 1em;
+    font-size: 0.75em;
+    background-color: transparent;
+  }
+}
+
+article.listing{
+  padding: 20px;
+  border: 2px solid black;
+  height: 300px;
+  width: vw;
+
+  img.listing-img {
+    max-height: 100%;
+    max-width: 100%;
+
+  }
+}

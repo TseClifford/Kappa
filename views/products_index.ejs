@@ -3,8 +3,24 @@
   <%- include('partials/_head') %>
   <body>
   <%- include('partials/_header'); %>
-  <main>
-    <h1>Products index</h1>
+  <main class="all-listings">
+    <a><strong>Featured</strong></a>
+    <section class="featured">
+      <article class="featured-listing">
+        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=300&hei=300', '900', 'Latest iPhone 13 Pro 256GB - Sierra Blue">
+        <a class="title">iPhone 13 Pro</a>
+        <a class="price">$499.99</a>
+      </article>
+    </section>
+
+    <div class="sorting-buttons">
+      <button>Favourite</button>
+      <button>Sort Price</button>
+    </div>
+    <article class = "listing">
+      <img class="listing-img" src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=300&hei=300', '900', 'Latest iPhone 13 Pro 256GB - Sierra Blue">
+
+    </article>
   </main>
 
 </body>

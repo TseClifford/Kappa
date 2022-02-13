@@ -1,20 +1,19 @@
-// See: https://sass-lang.com/
-
 header {
   nav {
     background-color: #7994AF;
     width: 100%;
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #EBF1FE
+    }
 
     a {
       color: #EBF1FE ;
       &:hover {
         color: white
       }
-    }
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #EBF1FE
     }
   }
 }
