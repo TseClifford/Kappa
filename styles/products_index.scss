@@ -1,11 +1,11 @@
 main.all-listings {
   // Featured Section
   section.featured {
-    padding: 20px 20px 0px 20px;
+    padding: 1em 1em 0px 1em;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    column-gap: 20px;
+    column-gap: 1em;
     border: 2px solid black;
     flex-wrap: wrap;
 
@@ -15,7 +15,7 @@ main.all-listings {
       align-items: center;
       text-align: center;
       border: 2px solid black;
-      margin-bottom: 20px;
+      margin-bottom: 1em;
 
       img {
         max-width: 150px;
@@ -44,7 +44,7 @@ main.all-listings {
 
   // All listings
   article.listing {
-    padding: 20px;
+    padding: 1em;
     border: 2px solid black;
     height: auto;
     max-width: 50vw;
@@ -52,6 +52,7 @@ main.all-listings {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    margin-bottom: 1em;
 
     img.listing-img {
       max-height: 100%;
@@ -63,10 +64,10 @@ main.all-listings {
       display: flex;
       text-align: left;
       flex-direction: column;
-      padding: 20px 0 0 0;
+      padding: 1em 0 0 0;
 
       p {
-        margin-top: 10px;
+        margin-top: 0.5em;
         width: 100%;
         text-align: left;
       }
@@ -93,7 +94,7 @@ main.all-listings {
         align-self: left;
       }
       div.listing-details {
-        padding: 0 0 0 20px;
+        padding: 0 0 0 1em;
       }
     }
   }
