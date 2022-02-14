@@ -46,6 +46,7 @@ const usersRoutes = require("./routes/api/users");
 const listingsRoutes = require("./routes/api/listings");
 const productsRoutes = require("./routes/products");
 const registerRoutes = require("./routes/register");
+const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -53,15 +54,11 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingsRoutes(db));
 app.use("/products", productsRoutes(db));
 app.use("/register", registerRoutes(db));
+app.use("/login", loginRoutes(db));
 
 // Redirects to the products page
 app.get("/", (req, res) => {
   res.redirect("/products");
-});
-
-// Login page
-app.get("/login", (req, res) => {
-  res.render("login");
 });
 
 // 404 error page

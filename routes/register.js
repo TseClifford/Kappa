@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const app = express();
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
@@ -18,14 +17,14 @@ module.exports = (db) => {
         //   }
         // })
         .then(() => {
-          db.query(`INSERT INTO users (name, email, password) VALUES ('${req.body.name}', '${req.body.email}', '${bcrypt.hashSync(req.body.password, salt)}');`)
-          req.session["email"] = req.body.email
-          res.redirect('/')
+          db.query(`INSERT INTO users (name, email, password) VALUES ('${req.body.name}', '${req.body.email}', '${bcrypt.hashSync(req.body.password, salt)}');`);
+          req.session["email"] = req.body.email;
+          res.redirect('/');
         })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-    })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+    });
 
   return router;
 };
