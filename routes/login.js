@@ -5,7 +5,14 @@ const bcrypt = require('bcryptjs');
 module.exports = (db) => {
   router
     .get("/", (req, res) => {
-      res.render("login");
+      if (req.session["user_id"]) {
+        res.redirect(`/`);
+      } else {
+        const templateVars = {
+          "user_id": req.session["user_id"],
+        };
+        res.render("login", templateVars);
+      }
     })
 
     .post("/", (req, res) => {
@@ -16,7 +23,7 @@ module.exports = (db) => {
           if (!userObj || !bcrypt.compareSync(req.body.password, userObj.password)) {
             res.status(403).send(`Invalid credentials.`);
           } else {
-            req.session["user_obj"] = userObj;
+            req.session["user_id"] = userObj;
             res.redirect('/');
           }
         })
