@@ -1,6 +1,5 @@
 main.unique-listing-info {
-
-  section.unique-listing-details {
+  article.unique-listing-details {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -44,7 +43,7 @@ main.unique-listing-info {
     column-gap: 5px;
 
     button {
-      background-color: rgba($color: #7994AF, $alpha: 0.3);
+      background-color: rgba($color: #7994af, $alpha: 0.3);
       border-radius: 5px;
     }
   }

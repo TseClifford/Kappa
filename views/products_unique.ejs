@@ -4,25 +4,21 @@
   <body>
   <%- include('partials/_header'); %>
   <main class="unique-listing-info">
-    <section class="unique-listing-details">
+    <article class="unique-listing-details">
       <div class="unique-primary-info">
-      <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=800&hei=800', '900', 'Latest iPhone 13 Pro 256GB - Sierra Blue">
+      <img src="<%= `${product.img_url}` %>">
       <div>
-        <a>iPhone 13</a>
-        <a class="price">$799.99</a>
-      </div>
-      <div>
-        <a>Seller:</a>
-        <a>Seller Name</a>
+        <a><%= product.title %></a>
+        <a class="price">$<%= product.price %></a>
       </div>
     </div>
-      <p>Your new superpower. Our most advanced dual-camera system ever. Cinematic mode. Ultra Wide camera. 5G. Adaptive 120Hz display. A15 Bionic chip. Super Retina XDR display. Your new superpower. Our most advanced dual-camera system ever. Cinematic mode. Ultra Wide camera. 5G. Adaptive 120Hz display. A15 Bionic chip. Super Retina XDR display.</p>
+      <p><%= product.description %></p>
       <div class="unique-listing-buttons">
         <button>Mark As Sold</button>
         <button>Add As Favourite</button>
         <button>Contact Seller</button>
       </div>
-    </section>
+    </article>
   </main>
 </body>
 

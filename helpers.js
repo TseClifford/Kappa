@@ -11,6 +11,19 @@ const getProducts = (db) => {
     });
 };
 
+const getProductById = (db, productId) => {
+  let query = `SELECT * FROM listings WHERE id=${productId}`;
+  return db
+    .query(query)
+    .then((data) => {
+      return data.rows[0];
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+};
+
 module.exports = {
   getProducts,
+  getProductById,
 };
