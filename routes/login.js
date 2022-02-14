@@ -9,11 +9,11 @@ module.exports = (db) => {
     })
 
     .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = '${req.body.email}';`)
+      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email])
         .then((data) => {
           const userObj = data.rows[0];
 
-          if (!bcrypt.compareSync(req.body.password, userObj.password)) {
+          if (!userObj || !bcrypt.compareSync(req.body.password, userObj.password)) {
             res.status(403).send(`Invalid credentials.`);
           } else {
             req.session["email"] = userObj.email;
