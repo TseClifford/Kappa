@@ -10,14 +10,21 @@ module.exports = (db) => {
     })
 
     .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = '${req.body.email}';`)
+      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email])
         .then((data) => {
           if (data.rows.length > 0) {
             res.send('This email has already been used.');
           } else {
-            db.query(`INSERT INTO users (name, email, password) VALUES ('${req.body.name}', '${req.body.email}', '${bcrypt.hashSync(req.body.password, salt)}');`);
-            req.session["email"] = req.body.email;
-            res.redirect('/');
+            db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
+              .then((data) => {
+                if (data.rows.length) {
+                  const record = data.rows[0]
+                  req.session["user_obj"] = record;
+                  res.redirect('/');
+                }
+              }).catch(error => {
+                console.error(error);
+              })
           }
         })
 
