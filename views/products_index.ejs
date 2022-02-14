@@ -17,9 +17,15 @@
       <% } %>
     </section>
     <div class="sorting-buttons">
-      <button>Favourite</button>
-      <button>Sort Price</button>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Show Only Favourites</label>
     </div>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Sort By Price</label>
+    </div>
+  </div>
     <% for(let product of products.filter((item) => item.isfeatured===false)) { %>
     <article class="listing">
       <a href="products/<%=`${product.id}`%>">
