@@ -7,7 +7,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/products">Listings</a>
+        <% if (typeof user_id !== 'undefined' && user_id.admin) { %>
         <a class="nav-item nav-link" href="/products/new">Create New Listing</a>
+        <% } %>
       </div>
     </div>
     <% if (typeof user_id !== 'undefined') { %>

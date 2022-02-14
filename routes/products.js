@@ -19,14 +19,13 @@ module.exports = (db) => {
   });
 
   router.get("/new", (req, res) => {
-    if (req.session["user_id"]) {
+    if (req.session["user_id"] && req.session["user_id"].admin) {
       const templateVars = {
         "user_id": req.session["user_id"],
       };
       res.render("products_new", templateVars);
     } else {
-      // res.send(`Please register or login.`);
-      res.render("products_new");
+      res.send(`You must be an authorized user to access this.`);
     }
   });
 
