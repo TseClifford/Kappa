@@ -16,7 +16,7 @@ module.exports = (db) => {
           if (!userObj || !bcrypt.compareSync(req.body.password, userObj.password)) {
             res.status(403).send(`Invalid credentials.`);
           } else {
-            req.session["email"] = userObj.email;
+            req.session["user_obj"] = userObj;
             res.redirect('/');
           }
         })
