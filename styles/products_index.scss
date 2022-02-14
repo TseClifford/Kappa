@@ -1,5 +1,4 @@
 main.all-listings {
-
   // Featured Section
   section.featured {
     padding: 20px 20px 0px 20px;
@@ -48,16 +47,16 @@ main.all-listings {
     padding: 20px;
     border: 2px solid black;
     height: auto;
-    width: vw;
+    max-width: 50vw;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
 
     img.listing-img {
       max-height: 100%;
       max-width: 100%;
       align-self: center;
-
     }
 
     div.listing-details {
@@ -66,11 +65,10 @@ main.all-listings {
       flex-direction: column;
       padding: 20px 0 0 0;
 
-
-        p {
-          margin-top: 10px;
-          width: 100%;
-          text-align: left;
+      p {
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
       }
     }
   }
@@ -80,11 +78,10 @@ main.all-listings {
   }
 
   .price {
-    color: #41AC6C !important;
+    color: #41ac6c !important;
   }
 
   @media (min-width: 720px) {
-
     // All listings
     article.listing {
       flex-direction: row;

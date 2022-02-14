@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const { getProducts } = require("../helpers");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    res.render("products_index");
+  router.get("/", async (req, res) => {
+    const products = await getProducts(db);
+    console.log(products);
+    const templateVars = { products };
+    res.render("products_index", templateVars);
   });
 
   router.get("/new", (req, res) => {
