@@ -7,6 +7,6 @@ CREATE TABLE listings (
   img_url VARCHAR(255) NOT NULL,
   price INTEGER NOT NULL,
   description TEXT,
-  isFeatured BOOLEAN DEFAULT 'false',
-  isSold BOOLEAN DEFAULT 'false'
+  featured BOOLEAN DEFAULT 'false',
+  sold BOOLEAN DEFAULT 'false'
 );
