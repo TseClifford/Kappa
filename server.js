@@ -7,6 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -33,17 +34,25 @@ app.use(
 
 app.use(express.static("public"));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ["mySuperSecretKey"],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/api/users");
 const listingsRoutes = require("./routes/api/listings");
 const productsRoutes = require("./routes/products");
+const registerRoutes = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingsRoutes(db));
 app.use("/products", productsRoutes(db));
+app.use("/register", registerRoutes(db));
 
 // Redirects to the products page
 app.get("/", (req, res) => {
@@ -53,11 +62,6 @@ app.get("/", (req, res) => {
 // Login page
 app.get("/login", (req, res) => {
   res.render("login");
-});
-
-// Registration page
-app.get("/register", (req, res) => {
-  res.render("register");
 });
 
 // 404 error page
