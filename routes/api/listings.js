@@ -4,15 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   // Browse
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM listings`;
-    db.query(query)
-      .then((data) => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+    console.log("To be implemented");
   });
 
   // Read
