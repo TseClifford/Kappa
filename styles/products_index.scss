@@ -32,7 +32,9 @@ main.all-listings {
   div.sorting-buttons {
     display: flex;
     justify-content: right;
-    margin: 5px 0em;
+    margin: 5px auto;
+    width: 75%;
+    min-width: 300px;
 
     button {
       height: 2em;
