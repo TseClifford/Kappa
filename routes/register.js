@@ -1,13 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const cookieSession = require("cookie-session");
 const app = express();
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ["mySuperSecretKey"],
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}));
+const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 
 module.exports = (db) => {
   router
@@ -23,7 +18,7 @@ module.exports = (db) => {
         //   }
         // })
         .then(() => {
-          db.query(`INSERT INTO users (name, email, password) VALUES ('${req.body.name}', '${req.body.email}', '${req.body.password}');`)
+          db.query(`INSERT INTO users (name, email, password) VALUES ('${req.body.name}', '${req.body.email}', '${bcrypt.hashSync(req.body.password, salt)}');`)
           req.session["email"] = req.body.email
           res.redirect('/')
         })
