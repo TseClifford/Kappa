@@ -22,6 +22,7 @@
     </div>
     <% for(let product of products.filter((item) => item.isfeatured===false)) { %>
     <article class="listing">
+      <div class="listing-contents">
       <a href="products/<%=`${product.id}`%>">
       <img class="listing-img" src="<%= `${product.img_url}` %>">
     </a>
@@ -29,6 +30,7 @@
         <a href="products/<%=`${product.id}`%>"><%= product.title %></a>
         <div class="price">$<%= product.price %></div>
         <p><%= product.description %></p>
+      </div>
       </div>
     </article>
     <% } %>
