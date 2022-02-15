@@ -17,13 +17,13 @@ module.exports = (db) => {
     })
 
     .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email])
+      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email.toLowerCase()])
         .then((data) => {
           if (data.rows.length > 0) {
             res.send('This email has already been used.');
             return;
           }
-          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, admin;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
+          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, admin;`, [req.body.name, req.body.email.toLowerCase(), bcrypt.hashSync(req.body.password, salt)])
             .then((data) => {
               const record = data.rows[0];
               req.session["user_id"] = record;

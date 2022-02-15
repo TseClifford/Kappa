@@ -16,7 +16,7 @@ module.exports = (db) => {
     })
 
     .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email])
+      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email.toLowerCase()])
         .then((data) => {
           const userObj = data.rows[0];
 
