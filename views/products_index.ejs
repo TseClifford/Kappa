@@ -6,7 +6,7 @@
   <main class="all-listings">
     <a><strong>Featured</strong></a>
     <section class="featured">
-    <% for(let product of products.filter((item) => item.isfeatured===true && item.issold===false)) { %>
+    <% for(let product of products.filter((item) => item.featured===true && item.sold===false)) { %>
       <article class="featured-listing">
         <a href="products/<%=`${product.id}`%>">
         <img src="<%= `${product.img_url}` %>">
@@ -28,7 +28,7 @@
     </select>
   </div>
   <section id="regular-listings">
-    <% for(let product of products.filter((item) => item.isfeatured===false && item.issold===false )) { %>
+    <% for(let product of products.filter((item) => item.featured===false && item.sold===false )) { %>
     <article class="listing">
       <div class="listing-contents">
       <a href="products/<%=`${product.id}`%>">
