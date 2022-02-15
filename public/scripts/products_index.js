@@ -34,7 +34,7 @@
     $products.empty();
     data.forEach((product) => {
       const $product = createProductListing(product);
-      $products.prepend($product);
+      $products.append($product);
     });
   };
 
