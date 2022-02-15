@@ -2,10 +2,10 @@
 // @param {db} database to query
 // @param {isFavourite} boolean to determine if to return only user's favourites
 // @param {sortBy} sorts the products by one of the options: "recent", "priceLow", "priceHigh"
-const getProducts = (db, isFavourite = false, sortBy = "recent") => {
+const getProducts = (db, favouritesOnly = false, sortBy = "recent") => {
   let query = `SELECT * FROM listings `;
 
-  if (isFavourite) {
+  if (favouritesOnly) {
     // in order to implement need to join users and favourites tables
     console.log("favourites yet to be implemented");
   }
