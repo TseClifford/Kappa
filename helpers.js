@@ -2,17 +2,26 @@
 // @param {db} database to query
 // @param {isFavourite} boolean to determine if to return only user's favourites
 // @param {sortBy} sorts the products by one of the options: "recent", "priceLow", "priceHigh"
-const getProducts = (db, favouritesOnly = false, sortBy = "recent") => {
+const getProducts = (
+  db,
+  favouritesOnly = false,
+  sortBy = "recent",
+  userId = undefined
+) => {
+  const queryParams = [];
   let query = `SELECT * FROM listings `;
 
-  if (favouritesOnly) {
-    // in order to implement need to join users and favourites tables
-    console.log("favourites yet to be implemented");
+  if (favouritesOnly && userId) {
+    queryParams.push(userId);
+    // join users and favourites tables
+    query +=
+      "JOIN favourites ON listing_id = listings.id JOIN users ON users.id = user_id ";
+    query += `WHERE favourites.user_id = $${queryParams.length} `;
   }
 
   switch (sortBy) {
     case "recent":
-      query += "ORDER BY id DESC";
+      query += "ORDER BY listings.id DESC";
       break;
     case "priceLow":
       query += "ORDER BY price DESC";
@@ -23,13 +32,13 @@ const getProducts = (db, favouritesOnly = false, sortBy = "recent") => {
 
   console.log(query);
   return db
-    .query(query)
+    .query(query, queryParams)
     .then((data) => {
       const listings = data.rows;
       return listings;
     })
     .catch((err) => {
-      res.status(500).json({ error: err.message });
+      console.log(err.message);
     });
 };
 
