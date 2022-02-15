@@ -40,9 +40,13 @@
 
   // Fetch and render products from the server
   const loadProducts = (favouritesOnly, sortBy) => {
-    $.get("/api/listings", { favouritesOnly, sortBy }).then((data) => {
-      renderProducts(data.products);
-    });
+    $.get("/api/listings", { favouritesOnly, sortBy })
+      .then((data) => {
+        renderProducts(data.products);
+      })
+      .catch((err) => {
+        // add jquery DOM insertion to show a message to the user that there was an error
+      });
   };
 
   // Callback function for handling the sorting buttons

@@ -9,11 +9,14 @@ module.exports = (db) => {
     let { favouritesOnly, sortBy } = req.query;
     // req.query returns a string, have to convert favouritesOnly back to a boolean
     favouritesOnly = favouritesOnly === "true";
-    const products = await getProducts(db, favouritesOnly, sortBy, userId);
-    if (products) {
-      res.send({ products });
-    } else {
-      res.status(500).send("Database query failed");
+    try {
+      const products = await getProducts(dba, favouritesOnly, sortBy, userId);
+      if (products) {
+        res.status(200).send({ products });
+      }
+    } catch (err) {
+      console.log("Error: ", err.message);
+      res.status(500).send(err);
     }
   });
 
