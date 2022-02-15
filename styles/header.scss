@@ -13,8 +13,12 @@ header {
 
     .nav-item {
       color: #EBF1FE;
+      border: 1px solid transparent;
+      border-radius: 3px;
       &:hover {
-        color: white;
+        color: #EBF1FE;
+        border: 1px solid #EBF1FE;
+        border-radius: 3px;
       }
     }
 
