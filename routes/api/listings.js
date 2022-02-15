@@ -5,12 +5,12 @@ const { getProducts } = require("../../helpers");
 module.exports = (db) => {
   // Browse
   router.get("/", async (req, res) => {
-    const userId = req.session["user_id"];
+    const userId = req.session["user_id.id"];
     let { favouritesOnly, sortBy } = req.query;
     // req.query returns a string, have to convert favouritesOnly back to a boolean
     favouritesOnly = favouritesOnly === "true";
     try {
-      const products = await getProducts(dba, favouritesOnly, sortBy, userId);
+      const products = await getProducts(db, favouritesOnly, sortBy, userId);
       if (products) {
         res.status(200).send({ products });
       }

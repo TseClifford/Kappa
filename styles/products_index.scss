@@ -1,4 +1,5 @@
 main.all-listings {
+
   // Featured Section
   section.featured {
     padding: 1em 1em 0px 1em;
@@ -30,10 +31,17 @@ main.all-listings {
   // Favourite and sort buttons
   div.sorting-buttons {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
     margin: 5px auto;
     width: 75%;
     min-width: 300px;
+
+    #sortBy {
+      max-width: 200px;
+    }
   }
 
   // All listings
@@ -86,6 +94,7 @@ main.all-listings {
   }
 
   @media (min-width: 720px) {
+
     // All listings
     article.listing {
       flex-direction: row;

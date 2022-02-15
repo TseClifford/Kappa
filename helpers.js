@@ -21,13 +21,13 @@ const getProducts = (
 
   switch (sortBy) {
     case "recent":
-      query += "ORDER BY listings.id DESC";
+      query += "ORDER BY listings.id DESC;";
       break;
     case "priceLow":
-      query += "ORDER BY price DESC";
+      query += "ORDER BY price DESC;";
       break;
     case "priceHigh":
-      query += "ORDER BY price";
+      query += "ORDER BY price;";
   }
 
   console.log(query);
