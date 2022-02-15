@@ -1,16 +1,6 @@
 (function () {
   $(() => {
-    $("#sortBy").on("input", function () {
-      const sortByParam = $(this).val();
-      //checked is an attribute of a native dom element, not a method of a jquery object, thus [0]
-      const favouritesParam = $("#favouritesOnly")[0].checked;
-      loadProducts(favouritesParam, sortByParam);
-    });
-    $("#favouritesOnly").on("change", function () {
-      const favouritesParam = this.checked;
-      const sortByParam = $("#sortBy").val();
-      loadProducts(favouritesParam, sortByParam);
-    });
+    $(".sorting-buttons").on("input", onSort);
   });
 
   // Helper function to protect from XSS attack via User Input
@@ -20,6 +10,7 @@
     return div.innerHTML;
   };
 
+  // Create html markup for a product listing
   const createProductListing = ({ id, img_url, title, price, description }) => {
     const htmlMarkup = `<article class="listing">
     <a href="products/${id}">
@@ -35,9 +26,9 @@
     return htmlMarkup;
   };
 
-  // loops through products
-  // calls createProductElement for each
-  // takes return value and prepends it to the products container
+  // loop through products
+  // call createProductElement for each
+  // take return value and prepends it to the products container
   const renderProducts = function (data) {
     $products = $("#regular-listings");
     $products.empty();
@@ -47,10 +38,20 @@
     });
   };
 
-  // Fetches and renders tweets from the server
+  // Fetch and render products from the server
   const loadProducts = (favouritesOnly, sortBy) => {
     $.get("/api/listings", { favouritesOnly, sortBy }).then((data) => {
       renderProducts(data.products);
     });
+  };
+
+  // Callback function for handling the sorting buttons
+  const onSort = function () {
+    const $input = $(this);
+    const $favouritesOnly = $input.find("input");
+    const $sortBy = $input.find("select");
+    const favouritesParam = $favouritesOnly[0].checked;
+    const sortByParam = $sortBy.val();
+    loadProducts(favouritesParam, sortByParam);
   };
 })();
