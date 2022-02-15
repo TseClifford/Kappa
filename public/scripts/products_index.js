@@ -50,6 +50,7 @@
     const $input = $(this);
     const $favouritesOnly = $input.find("input");
     const $sortBy = $input.find("select");
+    // checked is an attribute of a native dom element, not a method of a jquery object, thus [0].checked
     const favouritesParam = $favouritesOnly[0].checked;
     const sortByParam = $sortBy.val();
     loadProducts(favouritesParam, sortByParam);
