@@ -23,7 +23,7 @@ module.exports = (db) => {
             res.send('This email has already been used.');
             return;
           }
-          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
+          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, admin;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
             .then((data) => {
               const record = data.rows[0];
               req.session["user_id"] = record;
