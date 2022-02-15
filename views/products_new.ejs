@@ -6,15 +6,15 @@
     <%- include('partials/_header'); %>
       <main class="input-form">
         <div>
-          <form action="/register" method="POST">
+          <form action="/products_new" method="POST">
             <div class="form-group">
-              <h3>Create an account</h3>
-              <label for="name">Name:</label>
-              <input class="form-control" type="text" name="name" />
-              <label for="email">Email:</label>
-              <input class="form-control" type="email" name="email" />
-              <label for="password">Password:</label>
-              <input class="form-control" type="password" name="password" />
+              <h3>Create an new listing</h3>
+              <label for="title">Item Name:</label>
+              <input class="form-control" type="text" name="title" />
+              <label for="img_url">Image URL:</label>
+              <input class="form-control" type="text" name="img_url" />
+              <label for="price">Price:</label>
+              <input class="form-control" type="number" name="price" min="0.00" step="0.01"/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
