@@ -7,12 +7,12 @@ module.exports = (db) => {
     .get("/", (req, res) => {
       if (req.session["user_id"]) {
         res.redirect(`/`);
-      } else {
-        const templateVars = {
-          user_id: req.session["user_id"],
-        };
-        res.render("login", templateVars);
+        return;
       }
+      const templateVars = {
+        user_id: req.session["user_id"],
+      };
+      res.render("login", templateVars);
     })
 
     .post("/", (req, res) => {
@@ -20,15 +20,12 @@ module.exports = (db) => {
         .then((data) => {
           const userObj = data.rows[0];
 
-          if (
-            !userObj ||
-            !bcrypt.compareSync(req.body.password, userObj.password)
-          ) {
+          if (!userObj || !bcrypt.compareSync(req.body.password, userObj.password)) {
             res.status(403).send(`Invalid credentials.`);
-          } else {
-            req.session["user_id"] = userObj;
-            res.redirect("/");
+            return;
           }
+          req.session["user_id"] = userObj;
+          res.redirect("/");
         })
 
         .catch((err) => {

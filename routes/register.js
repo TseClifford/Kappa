@@ -8,12 +8,12 @@ module.exports = (db) => {
     .get("/", (req, res) => {
       if (req.session["user_id"]) {
         res.redirect(`/`);
-      } else {
-        const templateVars = {
-          "user_id": req.session["user_id"],
-        };
-        res.render("register", templateVars);
+        return;
       }
+      const templateVars = {
+        "user_id": req.session["user_id"],
+      };
+      res.render("register", templateVars);
     })
 
     .post("/", (req, res) => {
@@ -21,18 +21,16 @@ module.exports = (db) => {
         .then((data) => {
           if (data.rows.length > 0) {
             res.send('This email has already been used.');
-          } else {
-            db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
-              .then((data) => {
-                if (data.rows.length) {
-                  const record = data.rows[0];
-                  req.session["user_id"] = record;
-                  res.redirect('/');
-                }
-              }).catch(error => {
-                console.error(error);
-              });
+            return;
           }
+          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, [req.body.name, req.body.email, bcrypt.hashSync(req.body.password, salt)])
+            .then((data) => {
+              const record = data.rows[0];
+              req.session["user_id"] = record;
+              res.redirect('/');
+            }).catch(error => {
+              console.log(error);
+            });
         })
 
         .catch((err) => {
