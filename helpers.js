@@ -9,7 +9,7 @@ const getProducts = (
   userId = undefined
 ) => {
   const queryParams = [];
-  let query = `SELECT * FROM listings `;
+  let query = `SELECT listings.* FROM listings `;
 
   if (favouritesOnly && userId) {
     queryParams.push(userId);

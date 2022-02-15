@@ -4,7 +4,6 @@ const { getProducts, getProductById } = require("../helpers");
 
 module.exports = (db) => {
   router.get("/", async (req, res) => {
-    console.log("gonna get it");
     const products = await getProducts(db);
     const templateVars = { products };
 
