@@ -15,5 +15,24 @@ header {
         color: white
       }
     }
+    div.navbar-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    span {
+      color: #EBF1FE ;
+    }
+
+    form {
+      display: flex;
+      justify-content: flex-end;
+      align-content: right;
+      text-align: right;
+    }
+
+    button {
+      margin-left: 1em;
+    }
   }
 }

@@ -31,7 +31,9 @@ main.all-listings {
   div.sorting-buttons {
     display: flex;
     justify-content: right;
-    margin: 5px 0em;
+    margin: 5px auto;
+    width: 75%;
+    min-width: 300px;
   }
 
   // All listings
@@ -39,12 +41,20 @@ main.all-listings {
     padding: 1em;
     border: 2px solid black;
     height: auto;
-    max-width: 50vw;
+    max-width: 75%;
+    min-width: 300px;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
     margin-bottom: 1em;
+
+    div.listing-contents {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+    }
 
     img.listing-img {
       max-height: 100%;
@@ -71,6 +81,7 @@ main.all-listings {
   }
 
   .price {
+    font-weight: bold;
     color: #41ac6c !important;
   }
 
@@ -78,13 +89,20 @@ main.all-listings {
     // All listings
     article.listing {
       flex-direction: row;
-      height: 300px;
+      min-height: auto;
+
+      div.listing-contents {
+        display: flex;
+        flex-direction: row;
+        align-items: left;
+      }
 
       img.listing-img {
         max-height: 100%;
         max-width: 100%;
         align-self: left;
       }
+
       div.listing-details {
         padding: 0 0 0 1em;
       }
