@@ -20,9 +20,7 @@
         <% if (typeof user_id !=='undefined') { %>
           <button id="addFavourite" value="<%= `${product.id}` %>" class="<%= isFavourite ? 'disabled-btn' : '' %>"><%= isFavourite ? "Favourite" : "Add As Favourite" %></button>
         <% } %>
-        <% if (typeof user_id !=='undefined' && user_id.admin === false) { %>
           <button>Contact Breeder</button>
-        <% } %>
       </div>
       <p class="user-msg"></p>
     </article>
