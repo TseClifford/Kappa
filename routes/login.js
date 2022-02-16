@@ -26,7 +26,6 @@ module.exports = (db) => {
           }
           delete userObj.password;
           req.session["user_id"] = userObj;
-          console.log(req.session["user_id"])
           res.redirect("/");
         })
 

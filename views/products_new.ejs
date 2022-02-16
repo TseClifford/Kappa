@@ -6,7 +6,7 @@
     <%- include('partials/_header'); %>
       <main class="input-form">
         <div>
-          <form action="/products_new" method="POST">
+          <form action="/products/new" method="POST">
             <div class="form-group">
               <h3>Create a new listing</h3>
               <label for="title">Item Name:</label>
@@ -15,6 +15,10 @@
               <input class="form-control" type="text" name="img_url" />
               <label for="price">Price:</label>
               <input class="form-control" type="number" name="price" min="0.00" step="0.01"/>
+              <label for="description">Description:</label>
+              <textarea class="form-control" name="description" /></textarea>
+              <label for="featured">Featured:</label>
+              <input class="form-check-label check-box" type="checkbox" name="featured"/>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
