@@ -35,7 +35,6 @@ module.exports = (db) => {
         [req.body.title, req.session["user_id"].id, req.body.img_url, req.body.price, req.body.description, isFeatured])
         .then((data) => {
           const record = data.rows[0];
-          console.log(record);
           res.redirect('/');
         }).catch(error => {
           console.log(error);
@@ -52,7 +51,6 @@ module.exports = (db) => {
       const userObj = req.session["user_id"];
       Object.assign(templateVars, { user_id: userObj });
     }
-    console.log(templateVars);
     res.render("products_unique", templateVars);
   });
 
