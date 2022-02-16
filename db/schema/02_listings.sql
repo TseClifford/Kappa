@@ -5,7 +5,7 @@ CREATE TABLE listings (
   title VARCHAR(255) NOT NULL,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   img_url VARCHAR(255) NOT NULL,
-  price INTEGER NOT NULL,
+  price NUMERIC NOT NULL,
   description TEXT,
   featured BOOLEAN DEFAULT 'false',
   sold BOOLEAN DEFAULT 'false'
