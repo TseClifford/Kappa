@@ -46,18 +46,27 @@ const getProducts = (
 // @param {db} database to query
 // @param {productId} product ID
 const getProductById = (db, productId) => {
-  let query = "SELECT * FROM listings WHERE id=$1";
+  let query = "SELECT * FROM listings WHERE listings.id=$1";
   return db
     .query(query, [productId])
     .then((data) => {
       return data.rows[0];
     })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+    .catch((err) => err);
+};
+const checkIfFavourite = (db, productId, userId) => {
+  let query =
+    "SELECT listing_id FROM favourites WHERE listing_id=$1 AND user_id=$2";
+  return db
+    .query(query, [productId, userId])
+    .then((data) => {
+      return data.rows[0] ? true : false;
+    })
+    .catch((err) => err);
 };
 
 module.exports = {
   getProducts,
   getProductById,
+  checkIfFavourite,
 };

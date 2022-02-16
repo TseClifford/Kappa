@@ -14,9 +14,15 @@
     </div>
       <p><%= product.description %></p>
       <div class="unique-listing-buttons">
-        <button id="markSold" value="<%= `${product.id}` %>">Mark As Sold</button>
-        <button id="addFavourite" value="<%= `${product.id}` %>">Add As Favourite</button>
-        <button>Contact Seller</button>
+        <% if (typeof user_id !=='undefined' && user_id.admin === true) { %>
+          <button id="markSold" value="<%= `${product.id}` %>" class="<%= product.sold ? 'disabled-btn' : '' %>"><%= product.sold ? "Sold" : "Mark As Sold" %></button>
+        <% } %>
+        <% if (typeof user_id !=='undefined') { %>
+          <button id="addFavourite" value="<%= `${product.id}` %>" class="<%= isFavourite ? 'disabled-btn' : '' %>"><%= isFavourite ? "Favourite" : "Add As Favourite" %></button>
+        <% } %>
+        <% if (typeof user_id !=='undefined' && user_id.admin === false) { %>
+          <button>Contact Breeder</button>
+        <% } %>
       </div>
       <p class="user-msg"></p>
     </article>
