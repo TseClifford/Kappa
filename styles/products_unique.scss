@@ -6,13 +6,8 @@ main.unique-listing-info {
     align-items: center;
     width: 90%;
     margin: auto;
-<<<<<<< HEAD
-    box-shadow: 2px 2px 5px 1px #7994AF;
-    font-size: 0.85em;
-=======
     box-shadow: 2px 2px 5px 1px #7994af;
-    font-size: 0.75em;
->>>>>>> master
+    font-size: 0.85em;
 
     div.unique-primary-info {
       width: 100%;
@@ -76,6 +71,73 @@ main.unique-listing-info {
     cursor: not-allowed;
     opacity: 0.65;
     filter: alpha(opacity=65);
+  }
+
+  form {
+    /* Center the form on the page */
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 400px;
+    /* Form outline */
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    form li + li {
+      margin-top: 1em;
+    }
+
+    label {
+      /* Uniform size & alignment */
+      display: inline-block;
+      width: 90px;
+    }
+
+    input,
+    textarea {
+      /* To make sure that all text fields have the same font settings
+         By default, textareas have a monospace font */
+      font: 1em sans-serif;
+
+      /* Uniform text field size */
+      width: 300px;
+      box-sizing: border-box;
+
+      /* Match form field borders */
+      border: 1px solid #999;
+    }
+
+    input:focus,
+    textarea:focus {
+      /* Additional highlight for focused elements */
+      border-color: #000;
+    }
+
+    textarea {
+      /* Align multiline text fields with their labels */
+      vertical-align: top;
+
+      /* Provide space to type some text */
+      height: 5em;
+    }
+
+    .button {
+      /* Align buttons with the text fields */
+      padding-left: 90px; /* same size as the label elements */
+    }
+
+    button {
+      /* This extra margin represent roughly the same space as the space
+         between the labels and their text fields */
+      margin-top: 0.5em;
+      background-color: rgba($color: #7994af, $alpha: 0.3);
+      border-radius: 5px;
+    }
   }
 
   @media (min-width: 500px) {
