@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getProducts } = require("../../helpers");
+const { getProducts, updateProduct } = require("../../helpers");
 
 module.exports = (db) => {
   // Browse
@@ -27,8 +27,23 @@ module.exports = (db) => {
   });
 
   // Edit
-  router.post("/:id", (req, res) => {
-    console.log("To be implemented");
+  router.post("/:id", async (req, res) => {
+    console.log("Edit product");
+    const queryParams = [req.params.id];
+    let query = "";
+    if (req.body.sold) {
+      query += "UPDATE listings SET sold = true WHERE id = $1";
+    }
+    if (query) {
+      try {
+        const response = await db.query(query, queryParams);
+        if (response) {
+          res.status(200).send("success");
+        }
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+    }
   });
 
   // Add

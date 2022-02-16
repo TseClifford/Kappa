@@ -47,4 +47,16 @@ main.unique-listing-info {
       border-radius: 5px;
     }
   }
+  .user-msg {
+    font-size: 2em;
+    align-self: flex-start;
+    display: none;
+  }
+
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
 }

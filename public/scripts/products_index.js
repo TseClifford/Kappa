@@ -34,7 +34,9 @@
     $products.empty();
     data.forEach((product) => {
       const $product = createProductListing(product);
-      $products.append($product);
+      if (!product.sold) {
+        $products.append($product);
+      }
     });
   };
 
