@@ -2,12 +2,40 @@
   $(() => {
     $("#markSold").on("click", onBtnClick);
     $("#addFavourite").on("click", onBtnClick);
+    $("#msgBreeder").on("click", onMsgClick);
+    $("#msgForm").on("submit", submitForm);
   });
 
   const displayMsg = ($msg, text) => {
     $msg.html(text);
     $msg.slideDown("fast");
     setTimeout(() => $msg.slideUp("fast"), 2000);
+  };
+
+  const submitForm = function (event) {
+    event.preventDefault();
+
+    const $form = $(this);
+    const $msg = $(".user-msg");
+
+    $.post("/message", $form.serialize())
+      .then(() => {
+        $msg.addClass("green");
+        displayMsg($msg, "Message sent!");
+        $form.remove();
+      })
+      .catch(() => {
+        $msg.addClass("red");
+        displayMsg(
+          $msg,
+          "Sorry there was an error submitting your messsage, please try later."
+        );
+        return;
+      });
+  };
+
+  const onMsgClick = function () {
+    $("#msgForm").slideDown("fast");
   };
 
   const onBtnClick = async function () {

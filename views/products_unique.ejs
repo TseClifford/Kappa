@@ -20,23 +20,23 @@
         <% if (typeof user_id !=='undefined') { %>
           <button id="addFavourite" value="<%= `${product.id}` %>" class="<%= isFavourite ? 'disabled-btn' : '' %>"><%= isFavourite ? "Favourite" : "Add As Favourite" %></button>
         <% } %>
-          <button>Contact Breeder</button>
+          <button id="msgBreeder">Contact Breeder</button>
       </div>
       <p class="user-msg"></p>
     </article>
-    <form id="msgBreeder" action="/message" method="post">
+    <form id="msgForm" action="/message" method="post">
       <ul>
        <li>
-         <label for="name">Name:</label>
-         <input type="text" id="name" name="user_name">
+         <label for="name" >Name:</label>
+         <input type="text" id="name" name="user_name" required>
        </li>
        <li>
          <label for="mail">E-mail:</label>
-         <input type="email" id="mail" name="user_email">
+         <input type="email" id="mail" name="user_email" required>
        </li>
        <li>
          <label for="msg">Message:</label>
-         <textarea id="msg" name="user_message"></textarea>
+         <textarea id="msg" name="user_message" required></textarea>
        </li>
       </ul>
       <button>Submit</button>
