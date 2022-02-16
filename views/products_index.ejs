@@ -4,7 +4,7 @@
   <body>
   <%- include('partials/_header'); %>
   <main class="all-listings">
-    <a><strong>Featured</strong></a>
+    <div class="title" id="featured-label">Featured</div>
     <section class="featured">
     <% for(let product of products.filter((item) => item.featured===true && item.sold===false)) { %>
       <article class="featured-listing">
@@ -43,7 +43,7 @@
       <img class="listing-img" src="<%= `${product.img_url}` %>">
     </a>
       <div class="listing-details">
-        <a href="products/<%=`${product.id}`%>"><%= product.title %></a>
+        <a class="title" href="products/<%=`${product.id}`%>"><%= product.title %></a>
         <div class="price">$<%= product.price %></div>
         <p><%= product.description %></p>
       </div>

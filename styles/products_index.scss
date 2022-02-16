@@ -1,9 +1,24 @@
 main.all-listings {
   max-width: 1500px;
 
+  .title {
+    font-weight: bold;
+    color: #505e6c;
+    text-decoration: none;
+    &:hover {
+      color: #7994AF;
+    }
+  }
+
+  #featured-label {
+    padding: 0 1em 0;
+    font-weight: bold;
+    color: #62778b;
+  }
+
   // Featured Section
   section.featured {
-    padding: 0em 1em 0px;
+    padding: 0 1em 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -28,6 +43,7 @@ main.all-listings {
       a {
         padding: 0em 0.5em;
         margin-top: 0.5em;
+        text-decoration: none;
       }
     }
   }
@@ -80,6 +96,10 @@ main.all-listings {
       flex-direction: column;
       padding: 1em 0 0 0;
       height: 100%;
+
+      a.title {
+        font-size: 1.25em;
+      }
 
       p {
         margin-top: 0.5em;
