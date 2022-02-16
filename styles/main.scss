@@ -1,3 +1,12 @@
 main {
-  margin: 1em;
+  margin: 1em auto 1em;
+}
+
+.price {
+  font-weight: bold;
+  color: #41ac6c;
+}
+
+.hide {
+  display: none;
 }
