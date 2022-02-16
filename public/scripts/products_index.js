@@ -12,15 +12,18 @@
 
   // Create html markup for a product listing
   const createProductListing = ({ id, img_url, title, price, description }) => {
-    const htmlMarkup = `<article class="listing">
-    <a href="products/${id}">
-    <img class="listing-img" src=${escapeTxt(img_url)}>
+    const htmlMarkup = `
+    <article class="listing">
+      <div class="listing-contents">
+      <a href="products/${id}">
+      <img class="listing-img" src=${escapeTxt(img_url)}>
     </a>
-    <div class="listing-details">
-      <a href="products/${id}">${escapeTxt(title)}</a>
-      <div class="price">$${escapeTxt(price)}</div>
-      <p> ${escapeTxt(description)} </p>
-    </div>
+      <div class="listing-details">
+        <a class="title" href="products/${id}">${escapeTxt(title)}</a>
+        <div class="price">$${escapeTxt(price)}</div>
+        <p> ${escapeTxt(description)} </p>
+      </div>
+      </div>
     </article>
     `;
     return htmlMarkup;
