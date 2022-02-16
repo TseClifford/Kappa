@@ -28,11 +28,17 @@ module.exports = (db) => {
 
   // Edit
   router.post("/:id", async (req, res) => {
-    console.log("Edit product");
+    const user = req.session["user_id"];
+    const userId = user ? user.id : undefined;
     const queryParams = [req.params.id];
     let query = "";
-    if (req.body.sold) {
-      query += "UPDATE listings SET sold = true WHERE id = $1";
+    console.log(req.body);
+    if (req.body.action === "sold") {
+      query = "UPDATE listings SET sold = true WHERE id = $1";
+    }
+    if (req.body.action === "favourite" && userId) {
+      queryParams.unshift(userId);
+      query = "INSERT INTO favourites (user_id, listing_id) VALUES ($1, $2)";
     }
     if (query) {
       try {
