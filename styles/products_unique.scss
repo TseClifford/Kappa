@@ -4,11 +4,15 @@ main.unique-listing-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 75%;
-    max-width: 600px;
+    width: 90%;
     margin: auto;
+<<<<<<< HEAD
+    box-shadow: 2px 2px 5px 1px #7994AF;
+    font-size: 0.85em;
+=======
     box-shadow: 2px 2px 5px 1px #7994af;
     font-size: 0.75em;
+>>>>>>> master
 
     div.unique-primary-info {
       width: 100%;
@@ -28,7 +32,7 @@ main.unique-listing-info {
         background-color: rgba($color: #7994af, $alpha: 0.2);
       }
 
-      a {
+      span {
         padding: 0px 5px;
         font-weight: bold;
       }
@@ -74,9 +78,11 @@ main.unique-listing-info {
     filter: alpha(opacity=65);
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 500px) {
     article.unique-listing-details {
       font-size: 1rem;
+      width: 75%;
+      max-width: 600px;
     }
   }
 }

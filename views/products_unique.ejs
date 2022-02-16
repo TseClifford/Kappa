@@ -8,11 +8,11 @@
       <div class="unique-primary-info">
       <img src="<%= `${product.img_url}` %>">
       <div>
-        <a><%= product.title %></a>
-        <a class="price">$<%= product.price %></a>
+        <span><%= product.title %></span>
+        <span class="price">$<%= product.price %></span>
       </div>
-    </div>
       <p><%= product.description %></p>
+    </div>
       <div class="unique-listing-buttons">
         <% if (typeof user_id !=='undefined' && user_id.admin === true) { %>
           <button id="markSold" value="<%= `${product.id}` %>" class="<%= product.sold ? 'disabled-btn' : '' %>"><%= product.sold ? "Sold" : "Mark As Sold" %></button>

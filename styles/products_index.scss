@@ -1,4 +1,5 @@
 main.all-listings {
+  max-width: 1500px;
 
   // Featured Section
   section.featured {
@@ -89,15 +90,6 @@ main.all-listings {
 
   a {
     font-weight: bold;
-  }
-
-  .price {
-    font-weight: bold;
-    color: #41ac6c !important;
-  }
-
-  .hide {
-    display: none;
   }
 
   @media (min-width: 1000px) {
