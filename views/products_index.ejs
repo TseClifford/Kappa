@@ -28,7 +28,7 @@
     </select>
   </div>
   <section id="regular-listings">
-    <% for(let product of products.filter((item) => item.featured===false && item.sold===false )) { %>
+    <% for(let product of products.filter((item) => item.sold===false )) { %>
     <article class="listing">
       <div class="listing-contents">
       <a href="products/<%=`${product.id}`%>">
