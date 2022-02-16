@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getProducts, updateProduct } = require("../../helpers");
+const { getProducts } = require("../../helpers");
 
 module.exports = (db) => {
   // Browse
