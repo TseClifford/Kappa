@@ -34,11 +34,13 @@ app.use(
 
 app.use(express.static("public"));
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ["mySuperSecretKey"],
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["mySuperSecretKey"],
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  })
+);
 
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/api/users");
@@ -46,6 +48,7 @@ const listingsRoutes = require("./routes/api/listings");
 const productsRoutes = require("./routes/products");
 const registerRoutes = require("./routes/register");
 const loginRoutes = require("./routes/login");
+const messageRoutes = require("./routes/message");
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(db));
@@ -53,6 +56,7 @@ app.use("/api/listings", listingsRoutes(db));
 app.use("/products", productsRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
+app.use("/message", messageRoutes());
 
 // Redirects to the products page
 app.get("/", (req, res) => {
