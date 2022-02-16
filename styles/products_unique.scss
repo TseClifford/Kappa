@@ -6,8 +6,13 @@ main.unique-listing-info {
     align-items: center;
     width: 90%;
     margin: auto;
+<<<<<<< HEAD
     box-shadow: 2px 2px 5px 1px #7994AF;
     font-size: 0.85em;
+=======
+    box-shadow: 2px 2px 5px 1px #7994af;
+    font-size: 0.75em;
+>>>>>>> master
 
     div.unique-primary-info {
       width: 100%;
@@ -53,6 +58,25 @@ main.unique-listing-info {
       border-radius: 5px;
     }
   }
+  .user-msg {
+    font-size: 2em;
+    align-self: flex-start;
+    display: none;
+  }
+
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+  .disabled-btn {
+    background-color: gray;
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+  }
 
   @media (min-width: 500px) {
     article.unique-listing-details {
@@ -62,4 +86,3 @@ main.unique-listing-info {
     }
   }
 }
-

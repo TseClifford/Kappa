@@ -14,10 +14,11 @@
       <p><%= product.description %></p>
     </div>
       <div class="unique-listing-buttons">
-        <button>Mark As Sold</button>
-        <button>Add As Favourite</button>
+        <button id="markSold" value="<%= `${product.id}` %>">Mark As Sold</button>
+        <button id="addFavourite" value="<%= `${product.id}` %>">Add As Favourite</button>
         <button>Contact Seller</button>
       </div>
+      <p class="user-msg"></p>
     </article>
   </main>
 </body>

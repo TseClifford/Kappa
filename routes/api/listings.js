@@ -27,8 +27,29 @@ module.exports = (db) => {
   });
 
   // Edit
-  router.post("/:id", (req, res) => {
-    console.log("To be implemented");
+  router.post("/:id", async (req, res) => {
+    const user = req.session["user_id"];
+    const userId = user ? user.id : undefined;
+    const queryParams = [req.params.id];
+    let query = "";
+    console.log(req.body);
+    if (req.body.action === "sold") {
+      query = "UPDATE listings SET sold = true WHERE id = $1";
+    }
+    if (req.body.action === "favourite" && userId) {
+      queryParams.unshift(userId);
+      query = "INSERT INTO favourites (user_id, listing_id) VALUES ($1, $2)";
+    }
+    if (query) {
+      try {
+        const response = await db.query(query, queryParams);
+        if (response) {
+          res.status(200).send("success");
+        }
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+    }
   });
 
   // Add
