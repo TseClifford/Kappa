@@ -19,6 +19,8 @@ main.all-listings {
 
       img {
         max-width: 150px;
+        border: 2px solid white;
+        box-shadow: 2px 2px 2px 1px #7994AF;
       }
 
       a {
@@ -92,7 +94,7 @@ main.all-listings {
     color: #41ac6c !important;
   }
 
-  @media (min-width: 720px) {
+  @media (min-width: 1000px) {
 
     // All listings
     article.listing {
@@ -107,8 +109,10 @@ main.all-listings {
 
       img.listing-img {
         max-height: 100%;
-        max-width: 100%;
+        max-width: 400px;
         align-self: left;
+        border: 2px solid white;
+        box-shadow: 2px 2px 5px 1px #7994AF;
       }
 
       div.listing-details {
