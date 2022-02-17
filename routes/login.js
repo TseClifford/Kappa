@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const { getUserByEmail } = require("../helpers");
 
 module.exports = (db) => {
   router
@@ -13,28 +14,23 @@ module.exports = (db) => {
       res.status(200).end();
     })
 
-    .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = $1;`, [
-        req.body.email.toLowerCase(),
-      ])
-        .then((data) => {
-          const userObj = data.rows[0];
+    .post("/", async (req, res) => {
+      const { email, password } = req.body;
+      try {
+        const user = await getUserByEmail(db, email);
+        const userObj = user.rows[0];
 
-          if (
-            !userObj ||
-            !bcrypt.compareSync(req.body.password, userObj.password)
-          ) {
-            res.status(403).send(`Invalid credentials.`);
-            return;
-          }
-          delete userObj.password;
-          req.session["user_id"] = userObj;
-          res.redirect("/");
-        })
-
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
+        if (!userObj || !bcrypt.compareSync(password, userObj.password)) {
+          res.status(403).send("Invalid credentials.");
+          return;
+        }
+        delete userObj.password;
+        req.session["user_id"] = userObj;
+        res.redirect("/");
+      } catch (err) {
+        console.log("err", err);
+        res.status(500).send("There was a server error, try again later.");
+      }
     });
 
   return router;
