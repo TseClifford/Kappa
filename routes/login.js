@@ -9,18 +9,21 @@ module.exports = (db) => {
         res.redirect(`/`);
         return;
       }
-      const templateVars = {
-        user_id: req.session["user_id"],
-      };
-      res.render("login", templateVars);
+      res.render("login");
+      res.status(200).end();
     })
 
     .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email.toLowerCase()])
+      db.query(`SELECT * FROM users WHERE email = $1;`, [
+        req.body.email.toLowerCase(),
+      ])
         .then((data) => {
           const userObj = data.rows[0];
 
-          if (!userObj || !bcrypt.compareSync(req.body.password, userObj.password)) {
+          if (
+            !userObj ||
+            !bcrypt.compareSync(req.body.password, userObj.password)
+          ) {
             res.status(403).send(`Invalid credentials.`);
             return;
           }

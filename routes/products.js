@@ -4,51 +4,60 @@ const { getProducts, getProductById, checkIfFavourite } = require("../helpers");
 
 module.exports = (db) => {
   router.get("/", async (req, res) => {
-    const products = await getProducts(db);
-    const templateVars = { products };
+    try {
+      const products = await getProducts(db);
+      const templateVars = { products };
 
-    if (req.session["user_id"]) {
-      const userObj = req.session["user_id"];
-      Object.assign(templateVars, { user_id: userObj });
+      if (req.session["user_id"]) {
+        const userObj = req.session["user_id"];
+        Object.assign(templateVars, { userObj });
+      }
+      res.render("products_index", templateVars);
+      res.status(200).end();
+    } catch (err) {
+      res
+        .status(500)
+        .send("We are experiencing server problems, please try later.");
     }
-    res.render("products_index", templateVars);
   });
 
   router
     .get("/new", (req, res) => {
       if (req.session["user_id"] && req.session["user_id"].admin) {
-        const templateVars = {
-          user_id: req.session["user_id"],
-        };
+        const userObj = req.session["user_id"];
+        const templateVars = { userObj };
         res.render("products_new", templateVars);
-        return;
+        res.status(200).end();
       }
-      res.send(`You must be an authorized user to access this.`);
+      res.status(403).send(`You must be an authorized user to access this.`);
     })
 
-    .post("/new", (req, res) => {
+    .post("/new", async (req, res) => {
       let isFeatured = false;
       if (req.body.featured) {
         isFeatured = true;
       }
-      db.query(
-        `INSERT INTO listings (title, owner_id, img_url, price, description, featured) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
-        [
-          req.body.title,
-          req.session["user_id"].id,
-          req.body.img_url,
-          req.body.price,
-          req.body.description,
-          isFeatured,
-        ]
-      )
-        .then((data) => {
-          const record = data.rows[0];
+      const { title, img_url, price, description } = req.body;
+      try {
+        const response = await db.query(
+          `INSERT INTO listings (title, owner_id, img_url, price, description, featured) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`,
+          [
+            title,
+            req.session["user_id"].id,
+            img_url,
+            price,
+            description,
+            isFeatured,
+          ]
+        );
+        if (response) {
           res.redirect("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        } else {
+          throw "No response!";
+        }
+      } catch (err) {
+        res.status(500).send(err.message);
+      }
     });
 
   router.get("/:id", async (req, res) => {
@@ -61,7 +70,7 @@ module.exports = (db) => {
     try {
       product = await getProductById(db, productId);
       if (!product) {
-        throw "Product does not exist";
+        throw "Product does not exist.";
       }
       if (userId) {
         isFavourite = await checkIfFavourite(db, productId, userId);
@@ -70,7 +79,7 @@ module.exports = (db) => {
 
       if (req.session["user_id"]) {
         const userObj = req.session["user_id"];
-        Object.assign(templateVars, { user_id: userObj });
+        Object.assign(templateVars, { userObj });
       }
       res.render("products_unique", templateVars);
       res.status(200).end();

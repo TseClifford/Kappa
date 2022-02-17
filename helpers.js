@@ -1,3 +1,6 @@
+const bcrypt = require("bcryptjs");
+const salt = bcrypt.genSaltSync(10);
+
 // Returns a product list from the db
 // @param {db} database to query
 // @param {isFavourite} boolean to determine if to return only user's favourites
@@ -13,7 +16,7 @@ const getProducts = (
 
   if (favouritesOnly && userId) {
     queryParams.push(userId);
-    // join users and favourites tables
+    // Join users and favourites tables
     query +=
       "JOIN favourites ON listing_id = listings.id JOIN users ON users.id = user_id ";
     query += `WHERE favourites.user_id = $${queryParams.length} `;
@@ -39,6 +42,7 @@ const getProducts = (
     })
     .catch((err) => {
       console.log(err.message);
+      return err;
     });
 };
 
@@ -52,7 +56,10 @@ const getProductById = (db, productId) => {
     .then((data) => {
       return data.rows[0];
     })
-    .catch((err) => err);
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
 };
 
 // Checks if a listing is in the favourites table, returns boolean
@@ -67,11 +74,42 @@ const checkIfFavourite = (db, productId, userId) => {
     .then((data) => {
       return data.rows[0] ? true : false;
     })
-    .catch((err) => err);
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
+};
+
+const insertUser = (db, name, email, password) => {
+  let query =
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, admin;";
+
+  return db
+    .query(query, [name, email.toLowerCase(), bcrypt.hashSync(password, salt)])
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err.message);
+      return err;
+    });
+};
+
+const getUserByEmail = (db, email) => {
+  let query = "SELECT * FROM users WHERE email = $1;";
+
+  return db
+    .query(query, [email.toLowerCase()])
+    .then((data) => data)
+    .catch((err) => {
+      console.log(err.message);
+    });
 };
 
 module.exports = {
   getProducts,
   getProductById,
   checkIfFavourite,
+  insertUser,
+  getUserByEmail,
 };

@@ -14,11 +14,11 @@
       <p><%= product.description %></p>
     </div>
       <div class="unique-listing-buttons">
-        <% if (typeof user_id !=='undefined' && user_id.admin === true) { %>
+        <% if (typeof userObj !=='undefined' && userObj.admin === true) { %>
           <button id="addFavourite" value="<%= `${product.id}` %>" class="<%= isFavourite ? 'disabled-btn' : '' %>"><%= isFavourite ? "Favourite" : "Add As Favourite" %></button>
           <button id="markSold" value="<%= `${product.id}` %>" class="<%= product.sold ? 'disabled-btn' : '' %>"><%= product.sold ? "Sold" : "Mark As Sold" %></button>
           <button id="deleteListing" value="<%= `${product.id}` %>">Delete Listing</button>
-          <% } else if (typeof user_id !=='undefined') { %>
+          <% } else if (typeof userObj !=='undefined') { %>
           <button id="addFavourite" value="<%= `${product.id}` %>" class="<%= isFavourite ? 'disabled-btn' : '' %>"><%= isFavourite ? "Favourite" : "Add As Favourite" %></button>
           <button id="msgBreeder">Contact Breeder</button>
           <% } else { %>

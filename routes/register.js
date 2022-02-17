@@ -1,41 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSaltSync(10);
+const { insertUser, getUserByEmail } = require("../helpers");
 
 module.exports = (db) => {
   router
     .get("/", (req, res) => {
       if (req.session["user_id"]) {
         res.redirect(`/`);
-        return;
       }
-      const templateVars = {
-        "user_id": req.session["user_id"],
-      };
-      res.render("register", templateVars);
+      res.render("register");
+      res.status(200).end();
     })
 
-    .post("/", (req, res) => {
-      db.query(`SELECT * FROM users WHERE email = $1;`, [req.body.email.toLowerCase()])
-        .then((data) => {
-          if (data.rows.length > 0) {
-            res.send('This email has already been used.');
-            return;
-          }
-          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email, admin;`, [req.body.name, req.body.email.toLowerCase(), bcrypt.hashSync(req.body.password, salt)])
-            .then((data) => {
-              const record = data.rows[0];
-              req.session["user_id"] = record;
-              res.redirect('/');
-            }).catch(error => {
-              console.log(error);
-            });
-        })
-
-        .catch((err) => {
-          res.status(500).json({ error: err.message });
-        });
+    .post("/", async (req, res) => {
+      const { name, email, password } = req.body;
+      try {
+        const user = await getUserByEmail(db, email);
+        if (user.rows.length > 0) {
+          res.send("This email has already been used.");
+          return;
+        }
+        const userSessionData = await insertUser(db, name, email, password);
+        if (userSessionData) {
+          req.session["user_id"] = userSessionData;
+          res.redirect("/");
+        }
+      } catch (err) {
+        console.log("err", err);
+        res.status(500).send("There was a server error, try again later.");
+      }
     });
 
   return router;

@@ -7,15 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/products">Listings</a>
-        <% if (typeof user_id !=='undefined' && user_id.admin) { %>
+        <% if (typeof userObj !=='undefined' && userObj.admin) { %>
           <a class="nav-item nav-link" href="/products/new">Create New Listing</a>
           <% } %>
       </div>
     </div>
     <div class="navbar-nav">
-      <% if (typeof user_id !=='undefined' ) { %>
+      <% if (typeof userObj !=='undefined' ) { %>
         <form class="form-inline" action="/logout" method="POST">
-          <span>Logged In As: <%= user_id.name %></span>
+          <span>Logged In As: <%= userObj.name %></span>
           <button type="submit" class="btn btn-outline-light">Logout</button>
         </form>
         <% } else { %>
