@@ -21,11 +21,6 @@ module.exports = (db) => {
     }
   });
 
-  // Read
-  router.get("/:id", (req, res) => {
-    console.log("To be implemented");
-  });
-
   // Edit
   router.post("/:id", async (req, res) => {
     const user = req.session["user_id"];
@@ -53,16 +48,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       }
     }
-  });
-
-  // Add
-  router.post("/", (req, res) => {
-    console.log("To be implemented");
-  });
-
-  // Delete
-  router.post("/:id/delete", (req, res) => {
-    console.log("To be implemented");
   });
 
   return router;

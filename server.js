@@ -21,7 +21,7 @@ db.connect();
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(
   "/styles",
@@ -37,13 +37,12 @@ app.use(express.static("public"));
 app.use(
   cookieSession({
     name: "session",
-    keys: ["mySuperSecretKey"],
+    keys: [process.env.SESSIONKEY],
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
 );
 
 // Separated Routes for each Resource
-const usersRoutes = require("./routes/api/users");
 const listingsRoutes = require("./routes/api/listings");
 const productsRoutes = require("./routes/products");
 const registerRoutes = require("./routes/register");
@@ -51,7 +50,6 @@ const loginRoutes = require("./routes/login");
 const messageRoutes = require("./routes/message");
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingsRoutes(db));
 app.use("/products", productsRoutes(db));
 app.use("/register", registerRoutes(db));
