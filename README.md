@@ -1,9 +1,22 @@
 Kappa - A Dog Breeder Buy/Sell Listing Website
 =========
 
-Kappa is a full stack web application built with Node, Express, and Postgres.
+Kappa is a full stack web application built with Node, Express, and Postgres.\
+https://kappa-lhl.herokuapp.com/
+
+Project by:\
+[Clifford Tse](https://github.com/TseClifford)\
+[Donatas Tubutis](https://github.com/dktrdktr)
 
 ## Final Product
+
+### Desktop View
+<img src="./public/screenshots/desktop-products-page.png" width="30%" height="30%" />\
+<img src="./public/screenshots/desktop-product-unique.png" width="30%" height="30%" />
+
+### Mobile View
+<img src="./public/screenshots/mobile-products-page.png" width="15%" height="15%" />\
+<img src="./public/screenshots/mobile-product-unique.png" width="15%" height="15%" />
 
 ## Getting Started
 
