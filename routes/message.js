@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-const { restart } = require("nodemon");
 
 module.exports = () => {
   router.post("/", async (req, res) => {
