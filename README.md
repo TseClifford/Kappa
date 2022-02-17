@@ -11,12 +11,12 @@ Project by:\
 ## Final Product
 
 ### Desktop View
-<img src="./public/screenshots/desktop-products-page.png" width="30%" height="30%" />\
-<img src="./public/screenshots/desktop-product-unique.png" width="30%" height="30%" />
+<img src="./public/screenshots/desktop-products-page.png" width="75%" height="75%" />\
+<img src="./public/screenshots/desktop-product-unique.png" width="75%" height="75%" />
 
 ### Mobile View
-<img src="./public/screenshots/mobile-products-page.png" width="15%" height="15%" />\
-<img src="./public/screenshots/mobile-product-unique.png" width="15%" height="15%" />
+<img src="./public/screenshots/mobile-products-page.png" width="50%" height="50%" />\
+<img src="./public/screenshots/mobile-product-unique.png" width="50%" height="50%" />
 
 ## Getting Started
 
