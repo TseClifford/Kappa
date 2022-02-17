@@ -23,7 +23,7 @@
       .then(() => {
         $msg.addClass("green");
         displayMsg($msg, "Message sent!");
-        $form.remove();
+        $form.slideUp("fast");
       })
       .catch(() => {
         $msg.addClass("red");
@@ -70,7 +70,7 @@
         displayMsg($msg, userMsg);
         // Chain successful listing delete to redirect to main listings page
         if (elemId === "deleteListing") {
-          setTimeout("window.location.href = '../'", 3000)
+          setTimeout("window.location.href = '../'", 3000);
         }
       }
     } catch (err) {
