@@ -47,7 +47,7 @@
     if (elemId === "addFavourite") {
       [action, newBtnTxt, userMsg] = [
         "favourite",
-        "My Favourite",
+        "Favourite",
         "Added to favourites!",
       ];
     }

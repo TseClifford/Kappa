@@ -52,6 +52,15 @@ main.unique-listing-info {
       background-color: rgba($color: #7994af, $alpha: 0.3);
       border-radius: 5px;
     }
+
+    #deleteListing {
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      border-color: red;
+      background-color: rgba($color: red, $alpha: 0.75);
+    }
+
   }
   .user-msg {
     font-size: 2em;
