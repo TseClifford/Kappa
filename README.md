@@ -16,7 +16,7 @@ Project by:\
 
 ### Mobile View
 <img src="./public/screenshots/mobile-products-page.png" width="50%" height="50%" />\
-<img src="./public/screenshots/mobile-product-unique.png" width="50%" height="50%" />
+<img src="./public/screenshots/mobile-product-unique-doge.png" width="50%" height="50%" />
 
 ## Getting Started
 
