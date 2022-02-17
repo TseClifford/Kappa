@@ -2,6 +2,7 @@
   $(() => {
     $("#markSold").on("click", onBtnClick);
     $("#addFavourite").on("click", onBtnClick);
+    $("#deleteListing").on("click", onBtnClick);
     $("#msgBreeder").on("click", onMsgClick);
     $("#msgForm").on("submit", submitForm);
   });
@@ -51,6 +52,13 @@
         "Added to favourites!",
       ];
     }
+    if (elemId === "deleteListing") {
+      [action, newBtnTxt, userMsg] = [
+        "delete",
+        "Delete Listing",
+        "Listing Deleted!",
+      ];
+    }
     const productId = $(this).val();
     const $msg = $(".user-msg");
     try {
@@ -60,6 +68,10 @@
         $(this).addClass("disabled-btn");
         $msg.addClass("green");
         displayMsg($msg, userMsg);
+        // Chain successful listing delete to redirect to main listings page
+        if (elemId === "deleteListing") {
+          setTimeout("window.location.href = '../'", 3000)
+        }
       }
     } catch (err) {
       $msg.addClass("red");

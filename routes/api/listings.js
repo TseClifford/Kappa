@@ -40,6 +40,9 @@ module.exports = (db) => {
       queryParams.unshift(userId);
       query = "INSERT INTO favourites (user_id, listing_id) VALUES ($1, $2)";
     }
+    if (req.body.action === "delete" && user.admin) {
+      query = "DELETE FROM listings WHERE id = $1";
+    }
     if (query) {
       try {
         const response = await db.query(query, queryParams);
