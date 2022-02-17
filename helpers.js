@@ -46,7 +46,7 @@ const getProducts = (
 // @param {db} database to query
 // @param {productId} product ID
 const getProductById = (db, productId) => {
-  let query = "SELECT * FROM listings WHERE listings.id=$1";
+  let query = "SELECT * FROM listings WHERE listings.id = $1;";
   return db
     .query(query, [productId])
     .then((data) => {
@@ -54,9 +54,14 @@ const getProductById = (db, productId) => {
     })
     .catch((err) => err);
 };
+
+// Checks if a listing is in the favourites table, returns boolean
+// @param {db} database to query
+// @param {productId} product ID
+// @param {userId} user ID
 const checkIfFavourite = (db, productId, userId) => {
   let query =
-    "SELECT listing_id FROM favourites WHERE listing_id=$1 AND user_id=$2";
+    "SELECT listing_id FROM favourites WHERE listing_id = $1 AND user_id = $2;";
   return db
     .query(query, [productId, userId])
     .then((data) => {
