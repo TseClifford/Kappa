@@ -60,19 +60,24 @@ module.exports = (db) => {
     }
     try {
       product = await getProductById(db, productId);
+      if (!product) {
+        throw "Product does not exist";
+      }
       if (userId) {
         isFavourite = await checkIfFavourite(db, productId, userId);
       }
+      const templateVars = { product, isFavourite };
+
+      if (req.session["user_id"]) {
+        const userObj = req.session["user_id"];
+        Object.assign(templateVars, { user_id: userObj });
+      }
+      res.render("products_unique", templateVars);
+      res.status(200).end();
     } catch (err) {
       console.log(err.message);
+      res.redirect("/404");
     }
-    const templateVars = { product, isFavourite };
-
-    if (req.session["user_id"]) {
-      const userObj = req.session["user_id"];
-      Object.assign(templateVars, { user_id: userObj });
-    }
-    res.render("products_unique", templateVars);
   });
 
   return router;
