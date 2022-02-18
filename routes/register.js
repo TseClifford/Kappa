@@ -22,9 +22,10 @@ module.exports = (db) => {
         }
         const userSessionData = await insertUser(db, name, email, password);
         if (userSessionData) {
+          console.log(userSessionData)
           req.session["user_id"] = userSessionData;
-          res.redirect("/");
         }
+        res.redirect("/");
       } catch (err) {
         console.log("err", err);
         res.status(500).send("There was a server error, try again later.");
