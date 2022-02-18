@@ -22,8 +22,7 @@ module.exports = (db) => {
         }
         const userSessionData = await insertUser(db, name, email, password);
         if (userSessionData) {
-          console.log(userSessionData)
-          req.session["user_id"] = userSessionData;
+          req.session["user_id"] = userSessionData.rows[0];
         }
         res.redirect("/");
       } catch (err) {
