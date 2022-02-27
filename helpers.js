@@ -23,14 +23,14 @@ const getProducts = (
   }
 
   switch (sortBy) {
-    case "recent":
-      query += "ORDER BY listings.id DESC;";
-      break;
-    case "priceLow":
-      query += "ORDER BY price;";
-      break;
-    case "priceHigh":
-      query += "ORDER BY price DESC;";
+  case "recent":
+    query += "ORDER BY listings.id DESC;";
+    break;
+  case "priceLow":
+    query += "ORDER BY price;";
+    break;
+  case "priceHigh":
+    query += "ORDER BY price DESC;";
   }
 
   console.log(query);

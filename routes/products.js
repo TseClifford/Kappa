@@ -3,7 +3,7 @@ const router = express.Router();
 const { getProducts, getProductById, checkIfFavourite } = require("../helpers");
 
 module.exports = (db) => {
-  router.get("/", async (req, res) => {
+  router.get("/", async(req, res) => {
     try {
       const products = await getProducts(db);
       const templateVars = { products };
@@ -32,7 +32,7 @@ module.exports = (db) => {
       res.status(403).send(`You must be an authorized user to access this.`);
     })
 
-    .post("/new", async (req, res) => {
+    .post("/new", async(req, res) => {
       let isFeatured = false;
       if (req.body.featured) {
         isFeatured = true;
@@ -60,7 +60,7 @@ module.exports = (db) => {
       }
     });
 
-  router.get("/:id", async (req, res) => {
+  router.get("/:id", async(req, res) => {
     const productId = req.params.id;
     let product, userId;
     let isFavourite = false;

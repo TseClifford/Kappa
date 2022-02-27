@@ -4,7 +4,7 @@ const { getProducts } = require("../../helpers");
 
 module.exports = (db) => {
   // Browse
-  router.get("/", async (req, res) => {
+  router.get("/", async(req, res) => {
     const user = req.session["user_id"];
     const userId = user ? user.id : undefined;
     let { favouritesOnly, sortBy } = req.query;
@@ -22,7 +22,7 @@ module.exports = (db) => {
   });
 
   // Edit
-  router.post("/:id", async (req, res) => {
+  router.post("/:id", async(req, res) => {
     const user = req.session["user_id"];
     const userId = user ? user.id : undefined;
     const queryParams = [req.params.id];

@@ -14,7 +14,7 @@ module.exports = (db) => {
       res.status(200).end();
     })
 
-    .post("/", async (req, res) => {
+    .post("/", async(req, res) => {
       const { email, password } = req.body;
       try {
         const user = await getUserByEmail(db, email);

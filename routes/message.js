@@ -5,7 +5,7 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 module.exports = () => {
-  router.post("/", async (req, res) => {
+  router.post("/", async(req, res) => {
     const { user_name, user_email, user_message } = req.body;
     // Generate test SMTP service account from ethereal.email
     // Only needed if you don't have a real mail account for testing
