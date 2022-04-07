@@ -6,7 +6,7 @@ https://kappa-lhl.herokuapp.com/
 
 Project by:\
 [Clifford Tse](https://github.com/TseClifford)\
-[Donatas Tubutis](https://github.com/dktrdktr)
+[Donatas Tubutis](https://github.com/dotubutis)
 
 ## Final Product
 
